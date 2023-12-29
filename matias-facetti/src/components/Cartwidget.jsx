@@ -1,4 +1,5 @@
 import React from 'react'
+import Contador from './Contador'
 
 const Cartwidget = ({cantidad}) => {
   return (
@@ -7,5 +8,6 @@ const Cartwidget = ({cantidad}) => {
 </svg>{cantidad}</div>
   )
 }
+<Contador/>
 
 export default Cartwidget
