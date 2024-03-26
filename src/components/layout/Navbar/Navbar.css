@@ -1,0 +1,41 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(58, 48, 48);
+
+
+}
+
+.logoImg {
+    height: 60px;
+    width: 60px;
+    margin: 5px 5px;
+
+}
+
+.NavMenu {
+    display: flex;
+    align-items: center;
+}
+
+.NavMenu li {
+    margin-left: 10px;
+    margin-right: 10px;
+    list-style: none;
+    border: solid rgb(210, 194, 194) 1px;
+    border-radius: 30%;
+    color:  rgb(210, 194, 194);
+    padding: 5px 5px;
+
+}
+.NavMenu li:hover{
+    background-color: rgb(11, 9, 82);
+}
+.NavMenu li a{
+    text-decoration: none;
+    color: white;
+}
+
+.searchBar {
+    margin: 20px 0px
+}
