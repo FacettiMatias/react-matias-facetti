@@ -1,9 +1,9 @@
 import ItemCard from "../ItemCard/ItemCard";
 
 
-const ItemListContainer = () => {
+const ItemListContainer = ({greeting}) => {
 	return(
-    <ItemCard greeting={"Bienvenidos a mi pagina web"}/>
+    <h1> {greeting}</h1>
   )
 	
 };
