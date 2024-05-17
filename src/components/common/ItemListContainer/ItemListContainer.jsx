@@ -1,39 +1,52 @@
 import ItemCard from "../ItemCard/ItemCard";
-import { productos } from "../../../products-mock";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./itemListContainer.css"
-
-
+import "./itemListContainer.css";
+import Charger from "../charger/Charger";
+import { db } from "../../../firebaseConfig";
+import { collection, getDocs,query,where } from "firebase/firestore";
 const ItemListContainer = () => {
 	const [items, setItems] = useState([]);
-	let {name} = useParams()
-	console.log(name);
+	let { name } = useParams();
+
 	useEffect(() => {
-		let productosFiltrados = productos.filter(producto =>producto.categoria === name)
-		console.log(productosFiltrados);
-		const getProductos = new Promise((resolve, reject) => {
-			if (true) {
-				resolve( name ? productosFiltrados :productos)
-			} else {
-				reject("algo salio mal");
-			}
-		});
-		getProductos
-			.then((res) => setItems(res))
-			.catch((error) => console.log(error));
+
+		const coleccionProductos = collection (db,"productos")
+		let consulta = coleccionProductos
+		if (name) {
+			 consulta = query(coleccionProductos,where("categoria","==" , name))
+		}
+
+		
+		getDocs(consulta).then((res) =>{
+			let nuevoArray = res.docs.map((doc) =>{
+				return{id:doc.id, ...doc.data()}
+				
+			})
+			setItems(nuevoArray)
+		})
+		
+		
+
 	}, [name]);
-	return ( <div className="listContainer">
-	
-	{items.map((items) => {
+
+	if (items.length === 0) {
 		return (
-			
-				<ItemCard key={items.id}
-				{...items}
-			/>
-			
+			<div className="itemCharger">
+			<Charger className =".charger"/>
+			<Charger/>
+			<Charger/>
+			</div>
+
 		);
-	})}</div>)
+	}
+	return (
+		<div className="listContainer">
+			{items.map((items) => {
+				return <ItemCard key={items.id} {...items} />;
+			})}
+		</div>
+	);
 };
 
 export default ItemListContainer;

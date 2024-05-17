@@ -2,3 +2,12 @@
     display: flex;
     flex-direction: row;
 }
+.itemCharger{
+    display: flex;
+    flex-direction: row;
+}
+.charger{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0px 5px;
+}
